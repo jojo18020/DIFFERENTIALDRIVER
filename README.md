@@ -3,6 +3,7 @@ Modular MATLAB–ROS2 project for a differential-drive robot. Generates smooth s
 Differential Drive Trajectory Tracking – MATLAB + ROS2
 
 FOR MORE INFORMATION READ THE ROBOT ASSIGNEMENT DOCUMENTATION.
+FOR VIDEOS OF THE SIMULATIONS SEE ATTACHED VIDEO
 
 This project implements path smoothing, trajectory generation, and feedback control for a TurtleBot3 differential-drive robot in MATLAB with ROS2 integration.
 It converts discrete 2D waypoints into smooth trajectories and makes the robot follow them in simulation.
