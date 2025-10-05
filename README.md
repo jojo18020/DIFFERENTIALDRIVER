@@ -39,7 +39,7 @@ main_ros_sqiggly.m → curved “squiggly” path
 
 main_ros_J.m → J-shaped path
 
-📈 Results (What You’ll See)
+ Results (What You’ll See)
 
 Smooth trajectory tracking across custom waypoints
 
@@ -63,8 +63,15 @@ Extensibility
 
 The modular design allows simple extensions:
 
-Add obstacle avoidance (e.g., potential fields or DWA)
+To add Obstacle avoidance 
 
-Replace controller or velocity profiles independently
+Add a separate function (for example plan_avoidance.m) that pre-processes the waypoint list. It checks each straight line segment between consecutive waypoints against known obstacles. If a segment is too close, it shifts affected waypoints outward by an offset and returns the modified list, which you then pass into this pipeline exactly like the original waypoints.
+Rule:
+Let D_maxbe the maximum robot dimension. Set the safety offset
+Δ=1.5" " D_max.
 
-Deploy on a real TurtleBot3 with minimal changes
+For each segment (P_i P_(i+1) ) ‾, compute the minimum distance to each obstacle. If
+"dist"((P_i P_(i+1) ) ‾,"obstacle")<Δ,
+
+adjust the segment locally by moving the relevant waypoint(s) along the outward normal by Δ. The resulting modified waypoints are then fed into make_geom_from_waypoints.m with no other code changes.
+
